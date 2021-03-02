@@ -4,10 +4,10 @@ const defaultState = [];
 
 const countryStatsReducer = (state = defaultState, action) => {
   if (action.type === GET_COUNTRY_INFO) {
-    if (!action.countryStats) {
+    if (!action.payload) {
       return ['not found'];
-    } if (action.countryStats.length > 0) {
-      return Object.values(action.countryStats['0']);
+    } if (action.payload.length > 0) {
+      return Object.values(action.payload['0']);
     }
   }
   return state;

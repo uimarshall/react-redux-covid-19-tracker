@@ -4,7 +4,7 @@ const defaultState = ['Loading...'];
 
 const globalStatsReducer = (state = defaultState, action) => {
   if (action.type === GET_GLOBAL_COVID_INFO) {
-    return action.globalStats;
+    return action.payload;
   }
   return state;
 };

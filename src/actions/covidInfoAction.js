@@ -7,7 +7,8 @@ import {
 } from './actionTypes';
 
 const BASE_URL_WORLD = 'https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php';
-const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
+// const API_KEY = '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e';
 
 const BASE_URL_COUNTRY = 'https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php';
 
@@ -41,11 +42,11 @@ export const loadCountryStats = stats => ({
 
 export const getGlobalStats = () => async dispatch => {
   try {
-    dispatch(covidInfoLoading());
+    // dispatch(covidInfoLoading());
 
     const result = await axios.get(`${BASE_URL_WORLD}`, {
       headers: {
-        'x-rapidapi-key': API_KEY,
+        'x-rapidapi-key': '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e',
         'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
       },
 
@@ -59,13 +60,29 @@ export const getGlobalStats = () => async dispatch => {
   }
 };
 
+// const options = {
+//   method: 'GET',
+//   url: 'https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php',
+//   headers: {
+//     'x-rapidapi-key': '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e',
+//     'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
+//   },
+// };
+
+// export const getGlobalStats = () => dispatch => axios.request(options)
+//   .then(response => {
+//     console.log(response.data);
+//     const globalStatsArray = response.data;
+//     dispatch(loadGlobalStats(globalStatsArray));
+//   });
+
 export const getAffectedCountries = () => async dispatch => {
   try {
-    dispatch(covidInfoLoading());
+    // dispatch(covidInfoLoading());
 
     const result = await axios.get(`${BASE_URL_COUNTRY}`, {
       headers: {
-        'x-rapidapi-key': API_KEY,
+        'x-rapidapi-key': '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e',
         'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
       },
 
@@ -79,10 +96,17 @@ export const getAffectedCountries = () => async dispatch => {
   }
 };
 
+// export const getAffectedCountries = () => dispatch => axios.request(options)
+//   .then(response => {
+//     const countriesArray =
+// response.data.countries_stat.map(country => country.country_name).sort();
+//     dispatch(loadAffectedCountries(countriesArray));
+//   });
+
 export const getCountryStats = countryName => dispatch => {
   axios.get(`${BASE_URL_COUNTRY}`, {
     headers: {
-      'x-rapidapi-key': API_KEY,
+      'x-rapidapi-key': '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e',
       'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
     },
 
@@ -93,7 +117,8 @@ export const getCountryStats = countryName => dispatch => {
         countryStats = countryStats.filter(country => country.country_name === countryName);
         if (countryStats.length > 0) {
           let countryCode = Object.keys(codes).filter(key => codes[key] === countryName);
-          if (countryName === 'Channel Islands' || countryName === 'Diamond Princess') { countryCode = 'GB'; }
+          if (countryName === 'Channel Islands'
+|| countryName === 'Diamond Princess') { countryCode = 'GB'; }
           countryStats['0'].code = countryCode;
         } else {
           countryStats = undefined;
@@ -102,3 +127,31 @@ export const getCountryStats = countryName => dispatch => {
       }
     });
 };
+
+// const options2 = {
+//   method: 'GET',
+//   url: 'https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php',
+//   headers: {
+//     'x-rapidapi-key': '632c3502bfmsh80f3c88b636e0dbp14ca5ajsn3caf9004570e',
+//     'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
+//   },
+// };
+
+// export const getCountryStats = countryName => dispatch => {
+//   axios.request(options2)
+//     .then(response => {
+//       if (countryName) {
+//         let countryStats = response.data.countries_stat;
+//         countryStats = countryStats.filter(country => country.country_name === countryName);
+//         if (countryStats.length > 0) {
+//           let countryCode = Object.keys(codes).filter(key => codes[key] === countryName);
+//           if (countryName === 'Channel Islands' ||
+// countryName === 'Diamond Princess') { countryCode = 'GB'; }
+//           countryStats['0'].code = countryCode;
+//         } else {
+//           countryStats = undefined;
+//         }
+//         dispatch(loadCountryStats(countryStats));
+//       }
+//     });
+// };
