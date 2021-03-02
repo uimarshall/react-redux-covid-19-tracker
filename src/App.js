@@ -9,13 +9,11 @@ const Home = lazy(() => import('./components/Home'));
 const CountryDetails = lazy(() => import('./container/CountryDetails'));
 const ErrorPage = lazy(() => import('./components/ErrorPage'));
 
-
 function App() {
- 
   return (
     <div className="App">
       <Router>
-        <Navbar/>
+        <Navbar />
         <Switch>
           <Route exact path={HOME}>
             <Suspense fallback={Spinner()}>
