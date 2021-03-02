@@ -7,6 +7,7 @@ import '../assets/css/ErrorPage.css';
 function ErrorPage() {
   return (
     <div className="error-page">
+        
       <div className="container">
         <div className="error-img"><img src={errorImg} alt="error" /></div>
         <h1>404</h1>

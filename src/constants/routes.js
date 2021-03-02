@@ -1,3 +1,3 @@
 export const HOME = '/';
-export const DASHBOARD = '/dashboard';
+export const COUNTRY_DETAILS = '/details';
 export const NOT_FOUND = '*';
